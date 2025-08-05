@@ -1,26 +1,43 @@
-const addLinkButton = document.querySelector('.add-link-button');
-const currentFolderName = document.querySelector('.name');
+document.getElementById('back-button').onclick = function () {
+	document.getElementById('folder-view').style.display = 'none';
+	document.getElementById('main-view').style.display = 'block';
+};
 
-addLinkButton.addEventListener('click', async () => {
-  // Get active tab URL using a Promise wrapper
-  const { url: tabUrl, title: linkName } = await new Promise((resolve) => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      resolve({ url: tabs[0].url, title: tabs[0].title });
-    });
-  });
-
-  const linkElement = document.createElement('div');
-  linkElement.className = 'link';
-  linkElement.innerHTML = `
-    <span class="link-name">${linkName}</span>
-    <a href="${tabUrl}" target="_blank" class="link-url">${tabUrl}</a>
+document.querySelector('.add-link-button').addEventListener('click', async () => {
+	const { url, title } = await new Promise(resolve => {
+		chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+			resolve({ url: tabs[0].url, title: tabs[0].title });
+		});
+	});
+	const link = document.createElement('div');
+	link.className = 'link-item';
+	link.innerHTML = `
+    <span class="link-name" title="${title}">${title}</span>
+    <a href="${url}" target="_blank" class="link-url">${url}</a>
     <span class="material-symbols-outlined delete-icon">delete</span>
   `;
 
-  linkElement.querySelector('.delete-icon').addEventListener('click', (e) => {
-    e.stopPropagation();
-    linkElement.remove();
-  });
 
-  document.getElementById('folder-view').appendChild(linkElement);
+	link.querySelector('.delete-icon').addEventListener('click', e => {
+		e.stopPropagation();
+		link.remove();
+	});
+	document.querySelector('.links').appendChild(link);
 });
+
+
+addtoStorage = async (folderName, items) => {
+	const folderData = {
+		name: folderName,
+		items: items.map(item => ({
+			type: item.type,
+			name: item.name,
+			url: item.url || ''
+		}))
+	};
+
+	let storedFolders = await chrome.storage.local.get('folders');
+	storedFolders = storedFolders.folders || [];
+	storedFolders.push(folderData);
+	await chrome.storage.local.set({ folders: storedFolders });
+}

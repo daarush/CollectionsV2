@@ -3,7 +3,7 @@
   "name": "Collections V2",
   "version": "1.0",
   "description": "Open a custom side panel like Edge Collections",
-  "permissions": ["sidePanel", "tabs"],
+  "permissions": ["sidePanel", "tabs", "storage"],
   "action": {
     "default_title": "Open Sidebar"
   },
