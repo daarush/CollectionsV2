@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>My Panel</title>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" />
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div id="main-view">
+        <div class="toolbar">
+            <button><span class="material-symbols-outlined">add</span> New Folder</button>
+            <div class="total-folder-count">Total Folders: 1</div>
+        </div>
+        <div class="collections">
+            <!-- <div class="folder">
+                <div class="header">
+                    <span class="material-symbols-outlined">folder</span>
+                    <input class="folder-name" type="text" value="My Folder" />
+                    <div class="total-items">Total Items: 5</div>
+                    <span class="material-symbols-outlined delete-icon">delete</span>
+                </div>
+            </div> -->
+        </div>
+
+    </div>
+
+    <div id="folder-view" style="display: none;">
+        <div class="tool-bar">
+            <div class="name">Test</div>
+            <div class="add-link-button"><button id="add-link-button"><span class="material-symbols-outlined">add_link</span> Add Link</button></div>
+            <button id="back-button"><span class="material-symbols-outlined">arrow_back</span> </button>
+        </div>
+
+          
+    </div>
+    <script src="sidepanel.js"></script>
+    <script src="folderinfo.js"></script>
+</body>
+
+</html>
