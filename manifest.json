@@ -1,17 +1,25 @@
 {
-  "manifest_version": 3,
-  "name": "Collections V2",
-  "version": "1.0",
-  "description": "Open a custom side panel like Edge Collections",
-  "permissions": ["sidePanel", "tabs", "storage"],
-  "action": {
-    "default_title": "Open Sidebar"
-  },
-  "background": {
-    "service_worker": "service-worker.js"
-  },
-  "side_panel": {
-    "default_path": "sidepanel.html",
-    "openPanelOnActionClick": true
-  }
+    "manifest_version": 3,
+    "name": "Collections V2",
+    "version": "1.0",
+    "description": "Open a custom side panel like Edge Collections",
+    "permissions": [
+        "sidePanel",
+        "tabs",
+        "activeTab",
+        "storage"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "action": {
+        "default_title": "Open Sidebar"
+    },
+    "background": {
+        "service_worker": "service-worker.js"
+    },
+    "side_panel": {
+        "default_path": "sidepanel.html",
+        "openPanelOnActionClick": true
+    }
 }
